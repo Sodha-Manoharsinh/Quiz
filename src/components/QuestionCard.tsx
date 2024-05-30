@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "../App.css";
 
 type Props = {
@@ -8,10 +7,7 @@ type Props = {
   userAnswer: any;
   questionNr: number;
   totalQuestion: number;
-  clickedState: {
-    clicked: boolean;
-    setClicked: React.Dispatch<React.SetStateAction<boolean>>;
-  };
+  correctAnswer: string;
 };
 
 const QuestionCard: React.FC<Props> = ({
@@ -21,10 +17,8 @@ const QuestionCard: React.FC<Props> = ({
   userAnswer,
   questionNr,
   totalQuestion,
-  clickedState,
+  correctAnswer,
 }) => {
-  const { clicked, setClicked } = clickedState;
-
   const getAlpha = (num: number) => {
     switch (num) {
       case 0:
@@ -38,6 +32,26 @@ const QuestionCard: React.FC<Props> = ({
       default:
         return null;
     }
+  };
+
+  const setColors = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const btns = Array.from(
+      document.getElementsByClassName("ans-btn")
+    ) as HTMLButtonElement[];
+
+    btns.forEach((btn) => {
+      if (btn.value === correctAnswer) {
+        btn.className = `${btn.className} correct_answer`;
+      } else {
+        btn.className = `${btn.className} incorrect_answer`;
+      }
+    });
+
+    // if (e.currentTarget.value === correctAnswer) {
+    //   e.currentTarget.className = `${e.currentTarget.className} correct_answer`;
+    // } else {
+    //   e.currentTarget.className = `${e.currentTarget.className} incorrect_answer`;
+    // }
   };
 
   return (
@@ -56,10 +70,10 @@ const QuestionCard: React.FC<Props> = ({
             <button
               disabled={userAnswer}
               onClick={(e) => {
-                setClicked(true);
                 callback(e);
+                setColors(e);
               }}
-              className={`ans-btn ${clicked && "incorrect_answer"}`}
+              className="ans-btn"
               value={answer}
             >
               {getAlpha(i)}

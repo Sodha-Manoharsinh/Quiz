@@ -104,7 +104,7 @@ function App() {
           answers={questions[number].answers}
           userAnswer={userAnswers ? userAnswers[number] : undefined}
           callback={checkAnswer}
-          clickedState={{ clicked, setClicked }}
+          correctAnswer={questions[number].correct_answer}
         />
       )}
       {!gameOver &&

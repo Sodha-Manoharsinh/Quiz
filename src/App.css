@@ -151,3 +151,107 @@ h1 {
     transform: translatey(0px);
   }
 }
+
+/* xs */
+@media (max-width: 475px) {
+  .card {
+    height: 50vh;
+  }
+  .question {
+    font-size: 16px;
+  }
+  .answer {
+    font-size: 16px;
+  }
+  .div-container {
+    height: 90vh;
+    margin-top: 10px;
+    padding: 10px;
+  }
+  .div-container:hover {
+    height: 90vh;
+  }
+}
+
+/* sm */
+@media (min-width: 640px) {
+  :root {
+    --text-font-size: 1.25em;
+    --btn-font-size: 1em;
+  }
+  .container {
+    max-width: 640px;
+  }
+  .upper-nav {
+    justify-content: space-between;
+    padding-left: 2vw;
+    padding-right: 2vw;
+  }
+  #todo-input {
+    min-width: 20em;
+  }
+
+  .lower-nav-text {
+    display: block;
+  }
+
+  td,
+  th {
+    font-size: 1em;
+    height: 3em;
+  }
+
+  .sort-text {
+    font-size: 1.25em;
+  }
+
+  #sort {
+    font-size: 0.9em;
+  }
+}
+
+.btn-hover:hover {
+  cursor: pointer;
+}
+
+/* md */
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+
+  td,
+  th {
+    font-size: 1.2em;
+    height: 4em;
+  }
+
+  .sort-text {
+    font-size: 1.5em;
+  }
+
+  #sort {
+    font-size: 1.2em;
+  }
+}
+
+/* lg */
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+
+/* xl */
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+/* 2xl */
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1536px;
+  }
+}
