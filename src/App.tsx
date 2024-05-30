@@ -19,6 +19,7 @@ function App() {
   const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(true);
+  const [clicked, setClicked] = useState(false);
 
   const startTrivia = async () => {
     setLoading(true);
@@ -41,7 +42,12 @@ function App() {
       const answer = e.currentTarget.value;
       const correct = questions[number].correct_answer === answer;
 
-      if (correct) setScore((prev) => prev + 1);
+      if (correct) {
+        setScore(score + 1);
+        e.currentTarget.className = `${e.currentTarget.className} correct_answer`;
+      } else {
+        console.log(questions[number].correct_answer);
+      }
 
       const answerObject = {
         question: questions[number].question,
@@ -55,6 +61,9 @@ function App() {
 
   const nextQuestion = () => {
     const nextQ = number + 1;
+
+    console.log(questions[nextQ].correct_answer);
+
     if (nextQ === TOTAL_QUESTION) {
       setGameOver(true);
     } else {
@@ -95,6 +104,7 @@ function App() {
           answers={questions[number].answers}
           userAnswer={userAnswers ? userAnswers[number] : undefined}
           callback={checkAnswer}
+          clickedState={{ clicked, setClicked }}
         />
       )}
       {!gameOver &&

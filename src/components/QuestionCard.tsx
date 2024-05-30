@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "../App.css";
 
 type Props = {
@@ -7,6 +8,10 @@ type Props = {
   userAnswer: any;
   questionNr: number;
   totalQuestion: number;
+  clickedState: {
+    clicked: boolean;
+    setClicked: React.Dispatch<React.SetStateAction<boolean>>;
+  };
 };
 
 const QuestionCard: React.FC<Props> = ({
@@ -16,7 +21,25 @@ const QuestionCard: React.FC<Props> = ({
   userAnswer,
   questionNr,
   totalQuestion,
+  clickedState,
 }) => {
+  const { clicked, setClicked } = clickedState;
+
+  const getAlpha = (num: number) => {
+    switch (num) {
+      case 0:
+        return "a";
+      case 1:
+        return "b";
+      case 2:
+        return "c";
+      case 3:
+        return "d";
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className="card">
       <p className="number">
@@ -32,10 +55,15 @@ const QuestionCard: React.FC<Props> = ({
           <li key={answer} className="answer">
             <button
               disabled={userAnswer}
-              onClick={callback}
-              className="ans-btn"
+              onClick={(e) => {
+                setClicked(true);
+                callback(e);
+              }}
+              className={`ans-btn ${clicked && "incorrect_answer"}`}
+              value={answer}
             >
-              {i + 1}.{" "}
+              {getAlpha(i)}
+              {") "}
               <span dangerouslySetInnerHTML={{ __html: answer }}></span>
             </button>
           </li>

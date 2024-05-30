@@ -82,20 +82,32 @@ h1 {
   width: 100%;
 }
 
-.div-container:hover {
+.incorrect_answer {
+  background-color: red;
+  color: white;
+}
+
+.correct_answer {
+  background-color: #fff;
+  color: green;
+}
+.div-container:hover,
+.div-container:focus {
   background-color: #000000c1;
   transform: translateY(5px);
   height: 80vh;
   padding-bottom: 2rem;
 }
 
-.card:hover {
+.card:hover,
+.card:focus {
   animation: ani 3s ease-in-out infinite forwards;
   box-shadow: -5px -5px 5px rgb(255, 255, 255);
   height: 50vh;
 }
 
-.start:hover {
+.start:hover,
+.start:focus {
   background-color: rgba(52, 198, 52, 0.491);
   color: white;
 }
